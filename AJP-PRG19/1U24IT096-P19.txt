@@ -1,0 +1,38 @@
+import javax.print.*;
+import java.io.*;
+
+public class PrintWelcomeDirectly
+{
+    public static void main(String[] args)
+    {
+        String message = "Welcome";
+        InputStream input = new ByteArrayInputStream(message.getBytes());
+        DocFlavor flavor = DocFlavor.INPUT_STREAM.AUTOSENSE;
+        Doc doc = new SimpleDoc(input, flavor, null);
+        PrintService printer = PrintServiceLookup.lookupDefaultPrintService();
+        if (printer != null)
+        {
+           DocPrintJob printJob = printer.createPrintJob();
+            try
+            {
+                printJob.print(doc, null);
+            }
+            catch (PrintException e)
+            {
+                e.printStackTrace();
+            }
+        }
+        else
+        {
+            System.err.println("No default printer found");
+        }
+        try
+        {
+            input.close();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+}
