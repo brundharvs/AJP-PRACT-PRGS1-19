@@ -3,8 +3,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/Asif")
-public class AsifController {
+@RequestMapping("/Harini")
+public class HariniController {
 
     @GetMapping
     public String getData() {
